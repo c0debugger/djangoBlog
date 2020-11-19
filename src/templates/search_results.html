@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<h2> You search Results: </h2>
+
+{% for post in queryset %}
+
+<div class="list-group">
+    <a href="{{ post.get_absolute_url }}" class="list-group-item list-group-item-action">{{post.title}}</a>
+</div>
+
+
+{% endfor %}
+
+{% endblock %}
