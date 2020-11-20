@@ -1,1 +1,39 @@
 /* your styles go here */
+
+body {
+    background-color: #181a1b; !important 
+    
+}
+
+.navbar {
+    background: #181a1b;
+}
+
+.navbar .navbar-nav a.nav-link {
+    color: rgb(200, 195, 188);
+}
+
+.navbar .search-btn {
+color: #b94545;
+
+}
+
+.navbar .search-area-inner {
+
+    background: #181a1b;
+
+}   
+
+.navbar .search-area-inner input::placeholder {
+
+    color: rgb(200, 195, 188);	
+
+}
+
+section.featured-posts .row:nth-of-type(2n+1) .text {
+    background: #222;
+}
+
+.post .avatar {
+    margin-right: 0px;
+}

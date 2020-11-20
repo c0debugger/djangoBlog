@@ -11,13 +11,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     
     path('', index),
-    
     path('blog/', blog, name = 'post_list'),
     path('blog/search/',search, name='search_results'),
-
     path('post/<id>/', post, name = 'post_detail'),
 
-    #path('tinymce/', include('tinymce.urls')),
+    path('tinymce/', include('tinymce.urls')),
 
 
     
