@@ -1,12 +1,15 @@
 /* your styles go here */
 
 body {
-    background-color: #181a1b; !important 
+    background-color: rgb(19, 21, 22)  !important ; 
+    color: rgb(209, 205, 199);
     
 }
 
 .navbar {
     background: #181a1b;
+    border-bottom-color: rgb(122, 113, 100);
+    
 }
 
 .navbar .navbar-nav a.nav-link {
@@ -36,4 +39,55 @@ section.featured-posts .row:nth-of-type(2n+1) .text {
 
 .post .avatar {
     margin-right: 0px;
+}
+
+.blog-post h1 {
+    color: rgb(189, 183, 175);
+
+}
+
+.text-big {
+	color: rgb(221, 218, 214);
+}
+
+.post h3 {
+	color: rgb(211, 207, 201);
+}
+
+.widget.latest-posts a {
+	color: rgb(178, 172, 162);
+}
+
+.text-muted {
+	color: rgb(158, 150, 137) !important;
+}
+
+section.featured-posts h2 {
+	color: rgb(200, 195, 188);
+}
+
+section.hero {
+	color: rgb(232, 230, 227);
+}
+
+.widget {
+	border-color: rgb(122, 113, 100);
+}
+
+pre {
+	color: rgb(209, 205, 199);
+}
+
+.blog-post .post-comments p {
+	color: rgb(178, 172, 162);
+}
+
+.widget.categories .item {
+	
+    color: rgb(157, 148, 136);
+    background-color: rgb(27, 29, 30);
+}
+
+.blog-post .post-comments strong {
+	color: rgb(178, 172, 162);
 }
