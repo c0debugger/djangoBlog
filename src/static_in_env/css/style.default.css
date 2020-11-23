@@ -565,6 +565,8 @@ div[class*="-btn"] {
   font-size: 1.6em;
   font-weight: 300;
   font-family: "Open Sans", sans-serif;
+  /* custom */
+  color: bisque;
 }
 
 .navbar .search-area-inner input::-moz-placeholder {
@@ -1185,6 +1187,7 @@ main.posts-listing .post-footer {
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
   background: none;
+  color: beige
 }
 
 .widget.search input::-moz-placeholder {
@@ -1208,11 +1211,12 @@ main.posts-listing .post-footer {
   line-height: 40px;
   background: none;
   border: none;
-  color: #555;
+  color: #b94545;
   font-size: 0.9em;
   position: absolute;
   top: 0;
   right: 0;
+  
 }
 
 .widget.latest-posts a {
@@ -1359,7 +1363,7 @@ main.posts-listing .post-footer {
 .blog-post .post-body p:not(.lead) {
   font-size: 1em;
   line-height: 1.7em;
-  color: #555;
+  color: rgb(178, 172, 162);
 }
 
 .blog-post .posts-nav {

@@ -30,7 +30,9 @@ INSTALLED_APPS = [
 
     #TinyMCE
     'tinymce',
-    # 'filebrowser',
+    
+    #fileBrowser
+    'filebrowser',
 
     #Own
     'posts',

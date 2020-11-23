@@ -73,10 +73,10 @@ section.hero {
 .widget {
 	border-color: rgb(122, 113, 100);
 }
-
+/* 
 pre {
 	color: rgb(209, 205, 199);
-}
+} */
 
 .blog-post .post-comments p {
 	color: rgb(178, 172, 162);
@@ -91,3 +91,7 @@ pre {
 .blog-post .post-comments strong {
 	color: rgb(178, 172, 162);
 }
+
+.widget.latest-posts a:hover {
+    color: #555;
+  }

@@ -18,11 +18,13 @@ def search(request):
             
         ).distinct()
 
-    context = {
+        context = {
         
         'queryset' : queryset
 
-    }
+        }
+    else:
+        context = {}
 
     return render(request,'search_results.html',context)
 
@@ -85,10 +87,16 @@ def blog(request):
 
 def post(request, id):
 
+    category_count = get_category_count()
+    latest = Post.objects.order_by('-timestamp')[0:3]
+
+
     post = get_object_or_404(Post, id=id)
     context = {
 
-        'post' : post
+        'post' : post,
+        'latest' : latest,
+        'category_count' : category_count
     }
 
     return render(request,'post.html', context)
