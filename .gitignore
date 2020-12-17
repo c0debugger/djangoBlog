@@ -12,7 +12,7 @@ pip-selfcheck.json
 # src/<yourproject>/settings/local.py
 # static-cdn/  # any collected static files
 static_root/
-media_root/
+#media_root/
  
 
 
