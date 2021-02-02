@@ -17,6 +17,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['codedudeblog.herokuapp.com','127.0.0.1']
 
+import django_heroku
+# Activate Django-Heroku.
+django_heroku.settings(locals())
 
 # Application definition
 
