@@ -95,3 +95,9 @@ pre {
 .widget.latest-posts a:hover {
     color: #555;
   }
+
+.blog-post .post-body p:not(.lead) {
+    font-size: 1em;
+    line-height: 1.7em;
+    color: #ffc107;
+}
