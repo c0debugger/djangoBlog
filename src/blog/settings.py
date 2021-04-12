@@ -2,9 +2,6 @@
 from pathlib import Path
 import os
 
-#For HEROKU
-import django_heroku
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -18,8 +15,7 @@ SECRET_KEY = 'v#8^5+wf3l((&e@s)w2nr=og%&$81gs=%noi$-hv29po!ve$e9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['codedudeblog.herokuapp.com','127.0.0.1']
-
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -134,8 +130,6 @@ MEDIA_ROOT = os.path.join(VENV_PATH,'media_root')
 # print(f'STATIC_ROOT ={STATIC_ROOT} /n')
 # print(f'MEDIA_ROOT ={STATIC_ROOT} /n')
 
-#For Heroku
-django_heroku.settings(locals())
 
 ### TinyMCE
 
