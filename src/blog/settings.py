@@ -1,17 +1,22 @@
-'''
-ENVIRON SETUP settings variables ############################################################
-'''
+
 
 from pathlib import Path
 import os
 
+'''
+####### ENVIRON SETUP and reading .env files ############################################################
+'''
 import environ
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False)
 )
-#READ Multiple .env files based on bash command 
-#eg $ ENV_PATH={nameofenvfile} python manage.py runserver 
+
+
+# READ Multiple .env files based on bash command 
+# .env files must be save where settings.py is located 
+# eg ~$ ENV_PATH={nameofenvfile} ./manage.py runserver 
+
 ENV_PATH = env.str('ENV_PATH','.env') # care about default here..
 
 # reading .env file
@@ -34,12 +39,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'v#8^5+wf3l((&e@s)w2nr=og%&$81gs=%noi$-hv29po!ve$e9'
+
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-
-# DEBUG = True
+ 
 # False if not in os.environ
 DEBUG = env('DEBUG')
 
