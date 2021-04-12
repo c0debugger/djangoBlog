@@ -1,20 +1,30 @@
 '''
 ENVIRON SETUP settings variables ############################################################
 '''
+
+from pathlib import Path
+import os
+
 import environ
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False)
 )
+#READ Multiple .env files based on bash command 
+#eg $ ENV_PATH={nameofenvfile} python manage.py runserver 
+ENV_PATH = env.str('ENV_PATH','.env') # care about default here..
+
 # reading .env file
-environ.Env.read_env()
+env.read_env(str(Path(__file__).resolve().parent)+ '/' + ENV_PATH)
+
+# reading .env file
+#environ.Env.read_env()
 
 '''
 ############################################################
 '''
 
-from pathlib import Path
-import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
