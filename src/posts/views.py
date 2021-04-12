@@ -2,6 +2,7 @@ from django.db.models import Count ,Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger 
 from django.shortcuts import render, get_object_or_404
 from .models import Post
+from .forms import CommentForm
 from marketing.models import Signup
 
 
@@ -94,9 +95,17 @@ def post(request, id):
     post = get_object_or_404(Post, id=id)
     post.view_count += 1
     post.save()
+    form = CommentForm(request.POST or None)
+    
+    if request.method == "POST":
+        if form.is_valid():
+            form.instance.user = request.user
+            form.instance.post = post
+            form.save()
+
     
     context = {
-
+        'form' : form,
         'post' : post,
         'latest' : latest,
         'category_count' : category_count

@@ -2,6 +2,7 @@
 from pathlib import Path
 import os
 
+#For HEROKU
 import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -133,6 +134,7 @@ MEDIA_ROOT = os.path.join(VENV_PATH,'media_root')
 # print(f'STATIC_ROOT ={STATIC_ROOT} /n')
 # print(f'MEDIA_ROOT ={STATIC_ROOT} /n')
 
+#For Heroku
 django_heroku.settings(locals())
 
 ### TinyMCE
