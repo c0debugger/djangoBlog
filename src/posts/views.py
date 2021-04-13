@@ -1,7 +1,7 @@
 from django.db.models import Count ,Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger 
 from django.shortcuts import render, get_object_or_404
-from .models import Post
+from .models import Post,Category
 from .forms import CommentForm
 from marketing.models import Signup
 
@@ -64,16 +64,23 @@ def blog(request):
     page_request_var = 'page'
 
     page = request.GET.get(page_request_var)
-
+    print(page)
+   # print(paginator.page(paginator.num_pages))
     try:
         paginated_queryset = paginator.page(page)
+        
     except PageNotAnInteger:
         paginated_queryset = paginator.page(1)
+        print("Notint")
+        print(paginated_queryset)
     except EmptyPage:
         paginated_queryset = paginator.page(paginator.num_pages)
+        print("empty")
+        print(paginated_queryset)
 
     latest = Post.objects.order_by('-timestamp')[0:3]
 
+    print(paginated_queryset.paginator.num_pages)
 
     context = {
         'queryset' : paginated_queryset,
@@ -113,3 +120,40 @@ def post(request, id):
 
     return render(request,'post.html', context)
  
+
+
+def category(request, title):
+
+    category_count = get_category_count()
+    latest = Post.objects.order_by('-timestamp')[0:3]
+
+    category_object =get_object_or_404(Category,title=title)
+    if category_object:
+        post_list = Post.objects.filter(categories__title=title).order_by('-timestamp')
+    
+    paginator = Paginator(post_list, 4)
+    page_request_var = 'page'
+
+    page = request.GET.get(page_request_var)
+
+   
+
+    try:
+        paginated_queryset = paginator.page(page)
+    except PageNotAnInteger:
+        paginated_queryset = paginator.page(1)
+    except EmptyPage:
+        paginated_queryset = paginator.page(paginator.num_pages)
+
+    latest = Post.objects.order_by('-timestamp')[0:3]    
+    
+
+    context={
+
+        "queryset":paginated_queryset,
+        "category" :category_object,
+        "latest" : latest,
+        'category_count' : category_count
+
+    }
+    return render(request,"category.html",context)
