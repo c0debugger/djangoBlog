@@ -1,9 +1,9 @@
-{% extends "base.html" %} {% load static %} {% block content %}
+{% extends "base.html" %} {% load static %}   {% block content %}
 
 <div class="container">
   <div class="row">
     <!-- Latest Posts -->
-    <main class="posts-listing col-md-8">
+    <main class="posts-listing col-md-12 col-lg-8">
       <div class="container">
         <div class="row">
           <!-- post -->
@@ -33,39 +33,22 @@
                   </div>
                   <div class="title"><span>{{ post.author.user.username }}</span></div>
                 </a>
-                <div class="date"><i class="icon-clock"></i>{{ post.timestamp|timesince }} ago</div>
+               
+                <div class="date"><i class="icon-clock"></i>
+               
+                      
+                 {% if  post.timestamp.date  < todays_date %}
+                {{ post.timestamp.date | date:"d M Y" }} </div>
+                {%else%}
+                {{ post.timestamp|timesince }} ago</div>
+                {% endif %} 
                 <div class="comments meta-last"><i class="icon-comment"></i>{{ post.comment_count }}</div>
               </footer>
             </div>
           </div>
           {% endfor %}
         </div>
-        <!-- Pagination -->
-        {% comment %}
-        <nav aria-label="Page navigation example">
-          <ul class="pagination pagination-template d-flex justify-content-center">
-            {% if queryset.has_previous %}
-            <li class="page-item">
-              <a href="?{{ page_request_var }}={{ queryset.previous_page_number }}" class="page-link">
-                <i class="fa fa-angle-left"></i
-              ></a>
-            </li>
-            {% endif %}
-            <li class="page-item">
-              <a href="?{{ page_request_var }}={{ queryset.previous_number }}" class="page-link active"
-                >{{ queryset.number }}</a
-              >
-            </li>
-            {% if queryset.has_next %}
-            <li class="page-item">
-              <a href="?{{ page_request_var }}={{ queryset.next_page_number }}" class="page-link">
-                <i class="fa fa-angle-right"></i
-              ></a>
-            </li>
-            {% endif %}
-          </ul>
-        </nav>
-        {% endcomment %}
+        
 
         <!-- Pagination -->
         <h2>

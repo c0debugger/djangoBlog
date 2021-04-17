@@ -17,6 +17,7 @@ urlpatterns = [
     path('blog/search/',search, name='search_results'),
     path('post/<id>/', post, name = 'post_detail'),
     path('blog/category/<title>/', category, name ='category_list'),
+    path('^tz_detect/', include('tz_detect.urls')),
 
     path('tinymce/', include('tinymce.urls')),
 

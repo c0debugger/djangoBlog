@@ -1,9 +1,11 @@
 from django.db.models import Count ,Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 from .models import Post,Category
 from .forms import CommentForm
 from marketing.models import Signup
+import datetime
+from django.utils import timezone
 
 
 
@@ -80,13 +82,18 @@ def blog(request):
 
     latest = Post.objects.order_by('-timestamp')[0:3]
 
-    print(paginated_queryset.paginator.num_pages)
+
+    todays_date = datetime.datetime.now().date()
+  
+  
 
     context = {
         'queryset' : paginated_queryset,
         'page_request_var' : page_request_var,
         'latest' : latest,
-        'category_count' : category_count
+        'category_count' : category_count,
+        'todays_date' : todays_date,
+        
 
     }
 
@@ -97,7 +104,7 @@ def post(request, id):
 
     category_count = get_category_count()
     latest = Post.objects.order_by('-timestamp')[0:3]
-
+    todays_date = datetime.datetime.now().date()
 
     post = get_object_or_404(Post, id=id)
     post.view_count += 1
@@ -109,13 +116,16 @@ def post(request, id):
             form.instance.user = request.user
             form.instance.post = post
             form.save()
-
+            form = CommentForm()
+            redirect(post)
+    
     
     context = {
         'form' : form,
         'post' : post,
         'latest' : latest,
-        'category_count' : category_count
+        'category_count' : category_count,
+        'todays_date' :todays_date
     }
 
     return render(request,'post.html', context)

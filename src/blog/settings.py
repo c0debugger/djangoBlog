@@ -67,6 +67,9 @@ INSTALLED_APPS = [
     #fileBrowser
     'filebrowser',
 
+    #timeZone
+    'tz_detect',
+
     #Own
     'posts',
     'marketing',
@@ -80,6 +83,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'tz_detect.middleware.TimezoneMiddleware',
 ]
 
 ROOT_URLCONF = 'blog.urls'
