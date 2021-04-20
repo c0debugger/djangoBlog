@@ -1,8 +1,17 @@
 <!DOCTYPE html>
 <html>
-  {% include "head.html"%} {% load tz_detect %} {% tz_detect %}
+  {% include "head.html"%} {% load tz_detect %}  {% tz_detect %}
   <body>
-    {% include "header.html" %} {% block content %} {% endblock content %} {% include "footer.html" %} {%
-    include "scripts.html" %}
+   
+    {% include "header.html" %}
+    <div class="container">
+    
+    
+    {% block content %} {% endblock content %}
+    </div> 
+    
+    
+    {% include "footer.html" %} 
+    {%include "scripts.html" %}
   </body>
 </html>

@@ -48,7 +48,7 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ["localhost", "192.168.100.17",'127.0.0.1']
 
 
 # Application definition
@@ -60,6 +60,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    'django.contrib.sites', #added for All_AUTH
 
     #TinyMCE
     'tinymce',
@@ -73,6 +75,17 @@ INSTALLED_APPS = [
     #Own
     'posts',
     'marketing',
+
+    #All AUTH
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    #djangoTweaks
+    'widget_tweaks',
+
+    #
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -83,6 +96,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    #TZ-DETECT package
     'tz_detect.middleware.TimezoneMiddleware',
 ]
 
@@ -99,10 +114,25 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+
             ],
         },
     },
 ]
+
+#ADDED For ALL_AUTH
+AUTHENTICATION_BACKENDS = [
+    
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+    
+]
+
+
 
 WSGI_APPLICATION = 'blog.wsgi.application'
 
@@ -205,3 +235,29 @@ TINYMCE_DEFAULT_CONFIG = {
 }
 
 
+SITE_ID = 1
+
+# Provider specific settings
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        # For each OAuth based provider, either add a ``SocialApp``
+        # (``socialaccount`` app) containing the required client
+        # credentials, or list them here:
+        'APP': {
+            'client_id': '123',
+            'secret': '456',
+            'key': ''
+        }
+    }
+}
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+EMAIL_BACKEND = env('EMAIL_BACKEND')
+
+#django allauth settings
+ACCOUNT_EMAIL_REQUIRED=True
+ACCOUNT_AUTHENTICATION_METHOD= 'username_email'
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_LOGOUT_REDIRECT_URL ='/accounts/login/'
+LOGIN_REDIRECT_URL = '/'

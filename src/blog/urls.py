@@ -12,12 +12,16 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('admin/filebrowser/', site.urls), #File Browser
     
-    path('', index),
+    # path('', index),
+     path('', blog, name = 'post_list'),
     path('blog/', blog, name = 'post_list'),
     path('blog/search/',search, name='search_results'),
     path('post/<id>/', post, name = 'post_detail'),
     path('blog/category/<title>/', category, name ='category_list'),
-    path('^tz_detect/', include('tz_detect.urls')),
+    
+    path('accounts/', include('allauth.urls')), #all_auth
+
+    path('tz_detect/', include('tz_detect.urls')),
 
     path('tinymce/', include('tinymce.urls')),
 

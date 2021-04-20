@@ -448,8 +448,8 @@ div[class*="-btn"] {
 */
 .navbar {
   background: #fff;
-  padding-top: 20px !important;
-  padding-bottom: 20px !important;
+  /* padding-top: 20px !important; */
+  padding-bottom: 10px !important;
   z-index: 9998;
   border-bottom: 1px solid #ddd;
 }
@@ -459,13 +459,13 @@ div[class*="-btn"] {
   margin-left: 20px;
   padding-left: 20px;
   border-left: 1px solid #ddd;
-  height: 20px;
-  line-height: 20px;
+  height: 44px;
+  line-height: 33px
 }
 
 .navbar .search-btn {
   color: #333;
-  font-size: 0.9em;
+  font-size: 1.9em;
 }
 
 .navbar .navbar-toggler {
@@ -594,7 +594,7 @@ div[class*="-btn"] {
   color: #333;
   margin: 0 5px;
   font-weight: 400;
-  font-size: 0.95em;
+  font-size: 1.5em;
 }
 
 .navbar .navbar-nav a.nav-link:hover {

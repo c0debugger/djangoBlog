@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% load static %} {% block content %} {%if category %}
 
 
-<div class="container">
+
 <h2>Category is {{ category.title}}</h2>
   <div class="row">
     <!-- Latest Posts -->
@@ -79,7 +79,7 @@
 
     {% include "sidebar.html" with latest=latest category_count=category_count %}
   </div>
-</div>
+
 
 {%else%}
 <h1>Category Doesnt Exist</h1>

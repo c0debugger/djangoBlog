@@ -66,27 +66,17 @@ def blog(request):
     page_request_var = 'page'
 
     page = request.GET.get(page_request_var)
-    print(page)
-   # print(paginator.page(paginator.num_pages))
+   
     try:
-        paginated_queryset = paginator.page(page)
-        
+        paginated_queryset = paginator.page(page)  
     except PageNotAnInteger:
         paginated_queryset = paginator.page(1)
-        print("Notint")
-        print(paginated_queryset)
     except EmptyPage:
         paginated_queryset = paginator.page(paginator.num_pages)
-        print("empty")
-        print(paginated_queryset)
-
+    
     latest = Post.objects.order_by('-timestamp')[0:3]
-
-
     todays_date = datetime.datetime.now().date()
   
-  
-
     context = {
         'queryset' : paginated_queryset,
         'page_request_var' : page_request_var,

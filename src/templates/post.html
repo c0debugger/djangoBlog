@@ -1,9 +1,8 @@
-{% extends "base.html" %} {% load static %} {% block content %}
+{% extends "base.html" %} {% load static %} {%load crispy_forms_tags %} {% block content %}
 
-<div class="container">
-  <div class="row">
+  <div class="row"> 
     <!-- Latest Posts -->
-    <main class="post blog-post col-lg-8">
+    <main class="post blog-post col-lg-9">
       <div class="container">
         <div class="post-single">
           <div class="post-thumbnail"><img src="{{ post.thumbnail.url }}" alt="..." class="img-fluid" /></div>
@@ -17,25 +16,28 @@
                 {% endfor %}
               </div>
             </div>
-            <h1>
-              {{ post.title }}<a href="#"><i class="fa fa-bookmark-o"></i></a>
-            </h1>
-            <div class="post-footer d-flex align-items-center flex-column flex-sm-row">
+            <h3>
+              {{ post.title }}
+            </h3>
+            <div class="post-footer d-flex 
+                  align-items-center 
+                  flex-sm-row
+                  flex-column
+                  ">
               <a href="#" class="author d-flex align-items-center flex-wrap">
                 <div class="avatar">
                   <img src="{{ post.author.profile_picture.url }}" alt="..." class="img-fluid" />
                 </div>
-                <div class="title"><span>{{ post.author.user.username }}</span></div></a
-              >
-              <div class="d-flex align-items-center flex-wrap">
+                <div class="title"><span>{{ post.author.user.username }}</span></div></a>
+              <div class="d-flex align-items-center flex-sm-row">
                 <div class="date"><i class="icon-clock"></i>    
-                {% if  post.timestamp.date  < todays_date %}
-                {{ post.timestamp.date | date:"d M Y" }} </div>
-                {%else%}
-                {{ post.timestamp|timesince }} ago</div>
-                {% endif %}</div>
-                <div class="views"><i class="icon-eye"></i> {{ post.view_count }}</div>
-                <div class="comments meta-last"><i class="icon-comment"></i>{{ post.comment_count }}</div>
+                  {% if  post.timestamp.date  < todays_date %}
+                  {{ post.timestamp.date | date:"d M Y" }}
+                  {%else%}
+                  {{ post.timestamp|timesince }} ago
+                  {% endif %}</div>
+                <div class="views"><i class="icon-eye"></i>{{ post.view_count }}</div>
+                <div class="comments meta-last"><i class="icon-comment"></i>{{post.comments.count  }}</div>
               </div>
             </div>
             <div class="post-body">
@@ -75,11 +77,11 @@
               </p>
               {% endcomment %}
             </div>
-            <div class="post-tags">
+            {% comment %} <div class="post-tags">
               <a href="#" class="tag">#Business</a><a href="#" class="tag">#Tricks</a
               ><a href="#" class="tag">#Financial</a><a href="#" class="tag">#Economy</a>
-            </div>
-            <div class="posts-nav d-flex justify-content-between align-items-stretch flex-column flex-md-row">
+            </div> {% endcomment %}
+            {% comment %} <div class="posts-nav d-flex justify-content-between align-items-stretch flex-column flex-md-row">
               <a href="#" class="prev-post text-left d-flex align-items-center">
                 <div class="icon prev"><i class="fa fa-angle-left"></i></div>
                 <div class="text">
@@ -93,7 +95,7 @@
                 </div>
                 <div class="icon next"><i class="fa fa-angle-right"> </i></div
               ></a>
-            </div>
+            </div> {% endcomment %}
             <div class="post-comments">
               <header>
                 <h3 class="h6">Post Comments<span class="no-of-comments">({{post.comments.count}})</span></h3>
@@ -127,7 +129,7 @@
                 </div>
               </div>
               {% endfor %}
-              <div class="comment">
+              {% comment %} <div class="comment">
                 <div class="comment-header d-flex justify-content-between">
                   <div class="user d-flex align-items-center">
                     <div class="image">
@@ -160,17 +162,17 @@
                 </div>
               </div>
             </div>
-            <div class="add-comment">
+            <div class="add-comment"> {% endcomment %}
               <header>
-                <h3 class="h6">Leave a reply</h3>
+                <h3 class="h6">Leave a comment</h3>
               </header>
 
               {% if request.user.is_authenticated %}
               <form method="POST" class="post-form">
-                {% csrf_token %} {{ form.as_p }}
-                <button type="submit" class="save btn btn-default">Save</button>
+                {% csrf_token %} {{ form | crispy }}
+                <button type="submit" class="save btn btn-success">Submit Comment</button>
               </form>
-
+{% comment %} 
               <form method="POST" action="." class="commenting-form">
                 {% csrf_token %}
 
@@ -205,18 +207,19 @@
                     <button type="submit" class="btn btn-secondary">Submit Comment</button>
                   </div>
                 </div>
-              </form>
+              </form> {% endcomment %}
 
               {%else%}
-              <h2>LOGIN to Comment!! <a href="http://">Login</a></h2>
+              <h2> <a href="{% url 'account_login' %}?next={% firstof request.path '/'%}">LOGIN to Comment!!</a></h2>
+            
               {%endif%}
             </div>
           </div>
         </div>
-      </div>
+      
     </main>
     {% include "sidebar.html" with latest=latest category_count=category_count %}
   </div>
-</div>
+
 
 {% endblock content %}

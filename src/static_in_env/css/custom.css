@@ -111,3 +111,8 @@ pre {
 .navbar-toggler {
   background-color: #dddad6;
 }
+
+.navbar-nav {
+ 
+  padding-top: 14px;
+}
