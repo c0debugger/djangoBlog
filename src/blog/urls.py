@@ -13,7 +13,7 @@ urlpatterns = [
     path('admin/filebrowser/', site.urls), #File Browser
     
     # path('', index),
-     path('', blog, name = 'post_list'),
+    path('', blog, name = 'post_list'),
     path('blog/', blog, name = 'post_list'),
     path('blog/search/',search, name='search_results'),
     path('post/<id>/', post, name = 'post_detail'),
@@ -33,5 +33,5 @@ urlpatterns = [
 
 
 if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
-    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+     urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
+     urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

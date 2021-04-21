@@ -12,27 +12,20 @@ env = environ.Env(
     DEBUG=(bool, False)
 )
 
-
-# READ Multiple .env files based on bash command 
-# .env files must be save where settings.py is located 
-# eg ~$ ENV_PATH={nameofenvfile} ./manage.py runserver 
-
 ENV_PATH = env.str('ENV_PATH','.env') # care about default here..
 
-# reading .env file
+# # reading .env file
 env.read_env(str(Path(__file__).resolve().parent)+ '/' + ENV_PATH)
 
-# reading .env file
-#environ.Env.read_env()
-
-'''
-############################################################
-'''
+# '''
+# ############################################################
+# '''
 
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+#BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -48,7 +41,7 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 
 
-ALLOWED_HOSTS = ["localhost", "192.168.100.17",'127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -90,6 +83,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', #whitenoise
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -187,6 +181,8 @@ USE_L10N = True
 USE_TZ = True
 
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
@@ -194,10 +190,21 @@ STATIC_URL = '/static/'
 MEDIA_URL ='/media/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'static_in_env'),]
 
-VENV_PATH = os.path.dirname(BASE_DIR)
-STATIC_ROOT = os.path.join(VENV_PATH,'static_root')
-MEDIA_ROOT = os.path.join(VENV_PATH,'media_root')
-# print(f'BASE ={BASE_DIR} /n')
+STATIC_ROOT = os.path.join(os.path.dirname(
+    BASE_DIR), "static_cdn", "static_root")
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(os.path.dirname(
+    BASE_DIR), "static_cdn", "media_root")
+
+
+
+
+# VENV_PATH = os.path.dirname(BASE_DIR)
+# STATIC_ROOT = os.path.join(BASE_DIR,'static_root')
+# MEDIA_ROOT = os.path.join(BASE_DIR,'media_root')
+#print(f'BASE ={BASE_DIR}')
 # print(f'STATICFILES_DIR ={STATICFILES_DIRS} /n')
 # print(f'VENV_PATH ={VENV_PATH} /n')
 # print(f'STATIC_ROOT ={STATIC_ROOT} /n')
@@ -261,3 +268,4 @@ ACCOUNT_AUTHENTICATION_METHOD= 'username_email'
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_LOGOUT_REDIRECT_URL ='/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
+
