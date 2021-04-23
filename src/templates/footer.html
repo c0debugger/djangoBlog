@@ -42,7 +42,7 @@
             <div class="latest-posts">
 
             {% for post in latest %}
-              <a href="/post">
+              <a href="{{ post.get_absolute_url}}">
                 <div class="post d-flex align-items-center">
                   <div class="image"><img src="{{ post.thumbnail.url }}" alt="..." class="img-fluid"></div>
                   <div class="title"><strong>{{ post.title }}</strong><span class="date last-meta">{{ post.timestamp }}</span></div>
