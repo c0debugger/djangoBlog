@@ -6,23 +6,31 @@ import os
 '''
 ####### ENVIRON SETUP and reading .env files ############################################################
 '''
-import environ
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, False)
-)
+# import environ
+# env = environ.Env(
+#     # set casting, default value
+#     DEBUG=(bool, False)
+# )
 
-ENV_PATH = env.str('ENV_PATH','.env') # care about default here..
+# ENV_PATH = env.str('ENV_PATH','.env') # care about default here..
 
-# # reading .env file
-env.read_env(str(Path(__file__).resolve().parent)+ '/' + ENV_PATH)
+# # # reading .env file
+# env.read_env(str(Path(__file__).resolve().parent)+ '/' + ENV_PATH)
 
+# print(dir(env))
 # '''
 # ############################################################
 # '''
 
 
-
+import environ
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+# reading .env file
+environ.Env.read_env()
+#print(dir(env))
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 #BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -260,7 +268,6 @@ SOCIALACCOUNT_PROVIDERS = {
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-EMAIL_BACKEND = env('EMAIL_BACKEND')
 
 #django allauth settings
 ACCOUNT_EMAIL_REQUIRED=True
@@ -269,3 +276,30 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_LOGOUT_REDIRECT_URL ='/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 
+
+#print(os.environ.values)
+
+
+
+#EMAIL_URL =env('EMAIL_URL')
+EMAIL_BACKEND = env('EMAIL_BACKEND')
+
+EMAIL_CONFIG = env.email_url('EMAIL_URL')
+#print(EMAIL_CONFIG)
+# print("-------------------------------------------------------\n")
+# print(vars())
+vars().update(EMAIL_CONFIG)
+# print(EMAIL_CONFIG)
+#EMAIL_HOST = EMAIL_CONFIG['EMAIL_HOST']
+# print("-------------------------------------------------------\n")
+# print(vars())
+
+#print(EMAIL_CONFIG['EMAIL_HOST_USER'])
+
+EMAIL_HOST =EMAIL_CONFIG['EMAIL_HOST']
+EMAIL_PORT =EMAIL_CONFIG['EMAIL_PORT']
+#EMAIL_USE_TLS = env('EMAIL_USE_TLS')
+EMAIL_HOST_USER = EMAIL_CONFIG['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD =EMAIL_CONFIG['EMAIL_HOST_PASSWORD']
+SENDER = env('SENDER')
+RECEIVERS = env('RECEIVERS')
