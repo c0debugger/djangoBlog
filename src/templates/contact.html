@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+    <h1>Contact Us</h1>
+
+    <div class="col-lg-6 mt-4">
+    <form action="" method="POST">
+    {% csrf_token %}
+    
+        {{form}}
+    
+    <input type="submit" class="btn btn-success mt-2" value="Submit">
+    </form>
+    </div>
+{% endblock content %}
+
+
+
+   

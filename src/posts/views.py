@@ -7,6 +7,8 @@ from marketing.models import Signup
 import datetime
 from django.utils import timezone
 
+from blog.forms import ContactForm
+
 
 
 def search(request):
@@ -157,3 +159,15 @@ def category(request, title):
 
     }
     return render(request,"category.html",context)
+
+
+def contact(request):
+
+    if request.method=="POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            response=form.send_email()
+    else:
+        form = ContactForm()
+
+    return render(request,"contact.html",{'form': form})
