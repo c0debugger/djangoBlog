@@ -2,12 +2,14 @@ from django.db.models import Count ,Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger 
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Post,Category
-from .forms import CommentForm
+from .forms import CommentForm, EditForm
 from marketing.models import Signup
 import datetime
 from django.utils import timezone
 
 from blog.forms import ContactForm
+from django.contrib.admin.views.decorators import staff_member_required
+
 
 
 
@@ -171,3 +173,18 @@ def contact(request):
         form = ContactForm()
 
     return render(request,"contact.html",{'form': form})
+
+@staff_member_required
+def edit(request,id):
+
+    post=get_object_or_404(Post,id=id)
+    form = EditForm(instance=post)
+
+    if request.method=='POST':
+        form = EditForm(request.POST,instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect(post)
+   
+
+    return render(request,"edit.html",{'form': form})
