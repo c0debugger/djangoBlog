@@ -266,7 +266,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap4' #Cripsy Forms
 
 
 #django allauth settings
@@ -277,7 +277,7 @@ ACCOUNT_LOGOUT_REDIRECT_URL ='/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 
 
-#print(os.environ.values)
+
 
 
 
@@ -302,4 +302,7 @@ EMAIL_PORT =EMAIL_CONFIG['EMAIL_PORT']
 EMAIL_HOST_USER = EMAIL_CONFIG['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD =EMAIL_CONFIG['EMAIL_HOST_PASSWORD']
 SENDER = env('SENDER')
-RECEIVERS = env('RECEIVERS')
+RECEIVERS = env.list('RECEIVERS')
+DEFAULT_FROM_EMAIL = "no-reply@codedude.net"
+SITE_URL=env('SITE_URL')
+#print(os.environ.values)

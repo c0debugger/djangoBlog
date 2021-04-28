@@ -74,7 +74,7 @@ class ContactForm(forms.Form):
         sender = settings.SENDER
         receipients = settings.RECEIVERS
 
-        subject=self.cleaned_data['subject'] + ' [CONTACTFORM] ' + SITE_URL
+        subject=self.cleaned_data['subject'] + ' [CONTACTFORM] ' + settings.SITE_URL
         name = self.cleaned_data['name']
         email = self.cleaned_data['email']
         message = self.cleaned_data['message']
