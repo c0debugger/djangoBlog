@@ -169,7 +169,9 @@ def contact(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             response=form.send_email()
+            form = ContactForm()
     else:
+        
         form = ContactForm()
 
     return render(request,"contact.html",{'form': form})
