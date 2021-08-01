@@ -226,7 +226,7 @@
               </form> {% endcomment %}
 
               {%else%}
-              <h2> <a href="{% url 'account_login' %}?next={% firstof request.path '/'%}">LOGIN to Comment!!</a></h2>
+              <h2> <a class="btn btn-success mt-2" href="{% url 'account_login' %}?next={% firstof request.path '/'%}">LOGIN to Comment!!</a></h2>
             
               {%endif%}
             </div>

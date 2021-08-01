@@ -5,9 +5,9 @@
     <footer class="main-footer">
       <div class="container">
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-12 col-lg-4">
             <div class="logo">
-              <h6 class="text-white">Codebug Blog</h6>
+              <h6 class="text-white">CODEDUDE.NET Blog</h6>
             </div>
             <div class="contact-details">
               {% comment %} <p>53 Broadway, Broklyn, NY 11249</p>
@@ -22,25 +22,25 @@
               </ul>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="menus d-flex">
+          <div class="col-12 col-lg-5">
+            {% comment %} <div class="menus d-flex">
               <ul class="list-unstyled">
-                {% comment %} <li> <a href="#">My Account</a></li>
+                 <li> <a href="#">My Account</a></li>
                 <li> <a href="#">Add Listing</a></li>
                 <li> <a href="#">Pricing</a></li>
-                <li> <a href="#">Privacy &amp; Policy</a></li> {% endcomment %}
+                <li> <a href="#">Privacy &amp; Policy</a></li>
               </ul>
               <ul class="list-unstyled">
-                {% comment %} <li> <a href="#">Our Partners</a></li>
+                 <li> <a href="#">Our Partners</a></li>
                 <li> <a href="#">FAQ</a></li>
                 <li> <a href="#">How It Works</a></li>
-                <li> <a href="#">Contact</a></li> {% endcomment %}
+                <li> <a href="#">Contact</a></li> 
               </ul>
-            </div>
+            </div> {% endcomment %}
           </div>
-          <div class="col-md-4">
+          <div class="col-12 col-lg-3">
             <div class="latest-posts">
-
+            <h3 class="h6">Latest Posts</h3>
             {% for post in latest %}
               <a href="{{ post.get_absolute_url}}">
                 <div class="post d-flex align-items-center">
@@ -71,7 +71,7 @@
         <div class="container">
           <div class="row">
             <div class="col-md-6">
-              <p>&copy; 2021. All rights reserved. codedudeblog.herokuapp.com</p>
+              <p>&copy; 2021. All rights reserved. CODEDUDE.NET</p>
             </div>
             <div class="col-md-6 text-right">
               <p>Template By <a href="https://bootstrapious.com/p/bootstrap-carousel" class="text-white">Bootstrapious</a>
