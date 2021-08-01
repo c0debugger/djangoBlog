@@ -1,9 +1,11 @@
-import ckeditor
+
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.urls import reverse
-from tinymce import HTMLField
+
+#CKEDITOR stuff
 # from ckeditor.fields import RichTextField
+import ckeditor
 from ckeditor_uploader.fields import RichTextUploadingField
 
 
