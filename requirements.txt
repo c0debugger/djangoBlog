@@ -89,4 +89,5 @@ virtualenv-clone==0.5.4
 wcwidth==0.2.5
 wrapt==1.12.1
 django-storages==1.11.1
-boto3
+boto3==1.17.60
+django-ckeditor==6.1.0
