@@ -1,7 +1,7 @@
 from django import forms
 from django.forms.models import ModelForm
 from .models import Post ,Comment
-
+from django.forms import  Textarea
 
 
 class CommentForm(forms.ModelForm):
@@ -11,6 +11,10 @@ class CommentForm(forms.ModelForm):
 
         labels = {
            'content' : '',
+        }
+
+        widgets = {
+            'content': Textarea(attrs={'cols': 1, 'rows': 2}),
         }
 
 
