@@ -29,6 +29,7 @@ urlpatterns = [
 
      path('post/<id>/edit/', edit, name = 'edit'),
     
+    path('ckeditor/', include('ckeditor_uploader.urls')),#ckeditor
 
 
     
