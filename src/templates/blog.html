@@ -26,14 +26,17 @@
               </div>
               <a href="{{ post.get_absolute_url }}"><h3 class="h4">{{ post.title }}</h3></a>
               <p class="text-muted">{{ post.overview }}</p>
-              <footer class="post-footer d-flex align-items-center">
+              <footer class="post-footer d-flex 
+                  align-items-center 
+                  flex-sm-row
+                  flex-column">
                 <a href="#" class="author d-flex align-items-center flex-wrap">
                   <div class="avatar">
                     <img src="{{ post.author.profile_picture.url }}" alt="..." class="img-fluid" />
                   </div>
                   <div class="title"><span>{{ post.author.user.username }}</span></div>
                 </a>
-               
+               <div class="d-flex align-items-center flex-sm-row">
                 <div class="date"><i class="icon-clock"></i>
                
                       
@@ -43,6 +46,7 @@
                 {{ post.timestamp|timesince }} ago</div>
                 {% endif %} 
                 <div class="comments meta-last"><i class="icon-comment"></i>{{ post.comments.count }}</div>
+                </div>
               </footer>
             </div>
           </div>
