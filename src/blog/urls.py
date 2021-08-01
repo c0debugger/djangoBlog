@@ -4,13 +4,13 @@ from django.contrib import admin
 from django.urls import path ,include
 from posts.views import category, index, blog, post, search ,contact,edit
 
-from filebrowser.sites import site #File Browser
+
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('admin/filebrowser/', site.urls), #File Browser
+
     
     # path('', index),
     path('', blog, name = 'post_list'),
@@ -25,7 +25,7 @@ urlpatterns = [
 
     path('tz_detect/', include('tz_detect.urls')),
 
-    path('tinymce/', include('tinymce.urls')),
+    
 
      path('post/<id>/edit/', edit, name = 'edit'),
     
