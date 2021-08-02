@@ -26,7 +26,7 @@ import os
 import environ
 env = environ.Env(
     # set casting, default value
-    DEBUG=(bool, False)
+    DEBUG=(bool, False),USE_S3=(bool,False)
 )
 # reading .env file
 environ.Env.read_env()
@@ -267,9 +267,13 @@ SENDER = env('SENDER')
 RECEIVERS = env.list('RECEIVERS')
 DEFAULT_FROM_EMAIL = "no-reply@codedude.net"
 SITE_URL=env('SITE_URL')
+
 #print(os.environ.values)
 
-if (env('USE_S3')==True):
+USE_S3=env('USE_S3')
+print(USE_S3)
+if (USE_S3):
+
 #S3 Config to serve static files from S3 AWS Bucket / to server locally comment out this section
     AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
