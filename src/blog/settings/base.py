@@ -192,22 +192,7 @@ USE_L10N = True
 USE_TZ = True
 
 
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
-
-STATIC_URL = '/static/'
-#MEDIA_URL ='/media/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR,'static_in_env'),]
-
-STATIC_ROOT = os.path.join(os.path.dirname(
-    BASE_DIR), "static_cdn", "static_root")
-
-
-#MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(os.path.dirname(
-#     BASE_DIR), "static_cdn", "media_root")
 
 
 
@@ -284,41 +269,66 @@ DEFAULT_FROM_EMAIL = "no-reply@codedude.net"
 SITE_URL=env('SITE_URL')
 #print(os.environ.values)
 
-
+if (env('USE_S3')==True):
 #S3 Config to serve static files from S3 AWS Bucket / to server locally comment out this section
-AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
-AWS_S3_CUSTOM_DOMAIN ='%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=86400',
-}
+    AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
+    AWS_S3_CUSTOM_DOMAIN ='%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+    AWS_S3_OBJECT_PARAMETERS = {
+        'CacheControl': 'max-age=86400',
+    }
 
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'static_in_env'),
-]
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR,'static_in_env'),
+    ]
 
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_LOCATION = 'static'
-STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
-STATICFILES_STORAGE = 'blog.settings.custom_storages.StaticStorage'
-#S3 Config 
-#S3 public media settings
-PUBLIC_MEDIA_LOCATION = 'media'
-MEDIAFILES_LOCATION = 'media'
-DEFAULT_FILE_STORAGE = 'blog.settings.custom_storages.MediaStorage'
+    # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    STATICFILES_LOCATION = 'static'
+    STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
+    STATICFILES_STORAGE = 'blog.settings.custom_storages.StaticStorage'
+    #S3 Config 
+    #S3 public media settings
+    PUBLIC_MEDIA_LOCATION = 'media'
+    MEDIAFILES_LOCATION = 'media'
+    DEFAULT_FILE_STORAGE = 'blog.settings.custom_storages.MediaStorage'
 
-MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
-#print(MEDIA_URL)
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage' 
-AWS_QUERYSTRING_AUTH = False
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
+    #print(MEDIA_URL)
+    # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage' 
+    AWS_QUERYSTRING_AUTH = False
 # s3 
+else:
+
+    #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.1/howto/static-files/
+    
+    STATIC_URL = '/static/'
+    MEDIA_URL ='/media/'
+    STATICFILES_DIRS = [os.path.join(BASE_DIR,'static_in_env'),]
+
+    
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(os.path.dirname(
+        BASE_DIR), "static_cdn", "media_root")
+    STATIC_ROOT = os.path.join(os.path.dirname(
+        BASE_DIR), "static_cdn", "static_root")
+    
 
 #ckeditor config + upload path
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'full',
+        'extraPlugins': ','.join(
+          [
+              'codesnippet',
+          ]
+
+      ),
+      'codeSnippet_theme': 'default',
     },
 }
