@@ -449,7 +449,7 @@ div[class*="-btn"] {
 .navbar {
   background: #fff;
   /* padding-top: 20px !important; */
-  padding-bottom: 10px !important;
+  /* padding-bottom: 10px !important; */
   z-index: 9998;
   border-bottom: 1px solid #ddd;
 }
@@ -457,15 +457,16 @@ div[class*="-btn"] {
 .navbar .langs a:first-of-type,
 .navbar .search-btn {
   margin-left: 20px;
-  padding-left: 20px;
+  /* padding-left: 20px;
   border-left: 1px solid #ddd;
   height: 44px;
-  line-height: 33px
+  line-height: 33px */
 }
 
 .navbar .search-btn {
   color: #333;
-  font-size: 1.9em;
+  /* font-size: 1.9em; */
+  padding-top: 1.1rem;
 }
 
 .navbar .navbar-toggler {
@@ -594,7 +595,9 @@ div[class*="-btn"] {
   color: #333;
   margin: 0 5px;
   font-weight: 400;
-  font-size: 1.5em;
+  /* font-size: 1.5em; */
+  font-size: 1em;
+  padding-top: 1.5em;
 }
 
 .navbar .navbar-nav a.nav-link:hover {
@@ -1183,7 +1186,7 @@ main.posts-listing .post-footer {
   line-height: 40px;
   border: none;
   border-bottom: 1px solid #ddd;
-  font-size: 0.95em;
+  font-size: 0.75em;
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
   background: none;
@@ -1604,7 +1607,7 @@ STYLE SWITCHER FOR DEMO
  * 1. NAVBAR
  */
 .navbar {
-  padding: 0.5rem 1rem;
+  /* padding: 0.5rem 1rem; */
 }
 
 .navbar-brand {

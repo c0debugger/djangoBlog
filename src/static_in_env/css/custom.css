@@ -8,6 +8,8 @@ body {
 .navbar {
   background: #181a1b;
   border-bottom-color: rgb(122, 113, 100);
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 .navbar .navbar-nav a.nav-link {
@@ -114,5 +116,5 @@ pre {
 
 .navbar-nav {
  
-  padding-top: 14px;
+  /* padding-top: 14px; */
 }
